@@ -1,0 +1,65 @@
+
+<div class="container col-12 my-1 m-auto ">
+    <div class="row justify-content-around ">
+        <div style="width:640px;">
+            <h4 class="my-3">Prise de vues</h4>
+        </div>
+        <div style="width:640px;">
+            
+        </div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="text-center" style="position: relative;">
+            <div>
+                <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" ></webcam>
+            </div>
+
+            <!-- Cadre de l'image-->
+            <img src="../../assets/img/rect.png" alt="" style="position: absolute; top:50px;left:120px;">
+
+            <!-- Button Takes Photo -->
+            <button 
+                class="btn btn-secondary mb-2" 
+                (click)="triggerSnapshot();">{{text}}</button>
+        </div>
+        <div class="text-center">
+            <!-- Snapshot Div where image will be shown -->
+            <div style="width:640px; height:480px" class="snapshot border">
+                <div   *ngIf="webcamImage">
+                <img style="width:640px; height:480px" [src]="webcamImage.imageAsDataUrl"/>
+                </div>
+                <!-- Button Takes Photo -->
+            </div>
+            <button 
+                *ngIf="webcamImage" 
+                [disabled]="buttonDisabled" 
+                class="btn btn-success my-2" 
+                (click)="savaImage()">Valider</button>
+        </div>
+    </div>
+    <div class="container m-auto">
+        <div class="row ">
+            <div id="p1" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+            <div id="p2" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+            <div id="p3" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+            <div id="p4" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+            <div id="p5" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+            <div id="p6" class="col-lg-2 col-md4 col-sm-6 p-1"></div>
+        </div>
+    </div>
+
+    <a *ngIf="index===6" class="btn btn-primary d-block"  href="#">Téléverser les phptos</a>
+
+   <!-- <div >
+        
+        <input (change)="onImagePicked($event)" placeholder="Upload Image" type="file" multiple/>
+        <button (click)="onImageUpload()" >Upload Image</button>
+
+        <div *ngIf="imageUrl">
+        Preview Image from AWS
+        <br />
+        <img width="200px" src="https://YOUR S3 BUCKET NAME.s3.amazonaws.com/{{ imageUrl }}" />
+        </div>
+    </div>-->
+</div>
+
